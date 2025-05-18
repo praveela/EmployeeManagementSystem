@@ -1,0 +1,73 @@
+body{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+#main{
+    
+    height: 100vh;
+    width: 100%;
+    /* background: linear-gradient(to top right, #85abea, #d3f3b7);     */
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#nav{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+#nav h1{
+    font-weight: bolder;
+    font-size: 45px;
+    /* color: #153be7; */
+    margin-left: 20px;
+}
+#navlink a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    margin: 0 30px;
+}
+#header{
+    margin-top: 100px;
+
+}
+#header h1{
+    font-size: 40px;
+}
+#header p{
+    letter-spacing: 0.1rem;
+    color: #333;
+}
+
+#get{
+    color: #fff;
+    background-color: #153be7;
+    padding: 18px 30px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+  }
+  
+.card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+.card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
