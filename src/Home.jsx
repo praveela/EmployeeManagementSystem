@@ -9,7 +9,14 @@ const Home = () => {
       <nav id={styles.nav}>
         <h1>EMS</h1>
         <div id={styles.navlink}>
-          <Link to="/login">Login</Link>
+          {/* <Link to="/login">Login</Link> */}
+          <div className={styles.dropdown}>
+            <div className={styles.dropbtn}>Login</div>
+            <div className={styles.dropdownContent}>
+              <Link to="/login/admin">Login as Admin</Link>
+              <Link to="/login/emp">Login as Employee</Link>
+            </div>
+          </div>
           <Link to="/registration">Registration</Link>
         </div>
       </nav>
@@ -18,14 +25,14 @@ const Home = () => {
         <h1>Welcome to the Employee Management System</h1>
         <p>Manage Employee and track employee records efficiently</p>
         <button id={styles.get}>
-            <Link to='/registration'>Get Started</Link>
+          <Link to="/registration">Get Started</Link>
         </button>
       </div>
 
       <section className={styles.features}>
         <div className={styles.card}>
           <div className={styles.icon}>
-            <FaUsers size={60} id={styles.icons}/>
+            <FaUsers size={60} id={styles.icons} />
           </div>
           <h3>Total Employees</h3>
           <p>View and manage all employees</p>
@@ -33,7 +40,7 @@ const Home = () => {
 
         <div className={styles.card}>
           <div className={styles.icon}>
-            <FaBuilding size={50} id={styles.icons}/>
+            <FaBuilding size={50} id={styles.icons} />
           </div>
           <h3>Departments</h3>
           <p>Organize employees by department</p>
@@ -41,7 +48,7 @@ const Home = () => {
 
         <div className={styles.card}>
           <div className={styles.icon}>
-            <FaUserPlus size={50} id={styles.icons}/>
+            <FaUserPlus size={50} id={styles.icons} />
           </div>
           <h3>Add Employee</h3>
           <p>Add a new employee to the system</p>
@@ -49,7 +56,7 @@ const Home = () => {
 
         <div className={styles.card}>
           <div className={styles.icon}>
-            <FaFileAlt size={50} id={styles.icons}/>
+            <FaFileAlt size={50} id={styles.icons} />
           </div>
           <h3>Employee Reports</h3>
           <p>Generate and view employee reports</p>

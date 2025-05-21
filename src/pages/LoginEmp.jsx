@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "../css/login.module.css";
 import style from "../css/registration.module.css";
-import bg from "../assets/login.png";
+import bg from "../assets/official-logins.png";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const LoginEmp = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +62,7 @@ const Login = () => {
         <form action="" className={styles.form} onSubmit={handleSubmit}>
           <div className={style.heading}>
             <span>Welcome Back</span>
-            <h1>Admin Login</h1>
+            <h1>Employee Login</h1>
           </div>
           <div className={style.formGroup}>
             <label htmlFor="mail">Email ID</label>
@@ -103,9 +103,12 @@ const Login = () => {
       </div>
       <div id={styles.left}>
         <img src={bg} alt="Login" />
+        <button className={styles.btn}>
+          <Link to="/registration">Didn't Have Account</Link>
+        </button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginEmp;

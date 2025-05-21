@@ -31,8 +31,7 @@ const Registration = () => {
     if (!formData.pwd) {
       tempErrors.pwd = "Password is Required!";
     } else if (!pwdRegex.test(formData.pwd)) {
-      tempErrors.pwd =
-        "Password must be at least 8 characters long and include a number";
+      tempErrors.pwd ="Password must be at least 8 characters long and include a number";
     }
 
     if (!formData.cpwd) {
@@ -71,7 +70,7 @@ const Registration = () => {
       <div className={styles.info}>
         <img src={bg} alt="Register" />
         <button id={styles.btn}>
-          <Link to="/login">Have An Account?</Link>
+          <Link to="/login/emp">Have An Account?</Link>
         </button>
       </div>
       <div className={styles.header}>
