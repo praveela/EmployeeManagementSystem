@@ -6,26 +6,26 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  gap: 1%;
 }
 
 #logins {
   width: 50%;
   height: 100vh;
   padding: 1.5rem;
-  /* background-color: aliceblue; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .form {
-  width: 50%;
+  width: 55%;
   background-color: transparent;
   padding: 3rem;
   border: 0.2rem solid #cccc;
   border-radius: 5%;
-  backdrop-filter: blur(-10em);
-  box-shadow: 0.1rem 1rem 2rem 0 #fff;
+  backdrop-filter: blur(10em);
+  box-shadow: 0.1rem 0.5rem 0.5rem 0 #fff;
 }
 
 #buttons {
@@ -54,8 +54,19 @@
   transition: background-color 0.3s ease;
 }
 
+#forgot a {
+  font-size: 1.3rem;
+  padding-top: 0;
+  text-decoration: none;
+}
+
+#forgot a:hover {
+  text-decoration: underline;
+}
+
 #left {
-  width: 50%;
+  width: 49%;
+  /* padding: 6rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +74,7 @@
 }
 
 #left img {
-  width: 50%;
+  width: 60%;
 }
 
 #left .btn{
