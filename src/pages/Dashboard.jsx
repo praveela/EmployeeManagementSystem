@@ -10,82 +10,14 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { FaHouse } from "react-icons/fa6";
+import Sidebar from "./Sidebar";
+import { useEmployees } from "../context/EmployeeContext";
 
 const Dashboard = () => {
-  const employees = [
-    {
-      id: "EMP1234",
-      name: "Harsha",
-      email: "Harsha@example.com",
-      mobile: "9856743218",
-      designation: "Full Stack Developer",
-      status: "ACTIVE",
-    },
-    {
-      id: "EMP78619",
-      name: "Raji",
-      email: "raji@gmail.com",
-      mobile: "9856743218",
-      designation: "UI/UX Designer",
-      status: "ACTIVE",
-    },
-    {
-      id: "EMP34513",
-      name: "Priyanshi",
-      email: "priya@example.com",
-      mobile: "9856743218",
-      designation: "UI/UX Designer",
-      status: "ACTIVE",
-    },
-    {
-      id: "EMP23112",
-      name: "Haaniya",
-      email: "Haniya@example.com",
-      mobile: "9856743218",
-      designation: "Backend Developer",
-      status: "ACTIVE",
-    },
-    {
-      id: "EMP23418",
-      name: "Maliha",
-      email: "Maliha2373@gmail.com",
-      mobile: "9856743218",
-      designation: "Backend Developer",
-      status: "ACTIVE",
-    },
-  ];
+  const { employees, stats } = useEmployees();
   return (
     <div className={styles.dashboard}>
-      <aside className={styles.sidebar}>
-        <h1 className={styles.logo}>EMS</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/dashboard" className={styles.link}>
-                <FaHouse className={styles.icon} /> Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/employee" className={styles.link}>
-                <FaUsers className={styles.icon} /> Employees
-              </Link>
-            </li>
-            <li>
-              <FaCalendarCheck className={styles.icon} /> Attendance
-            </li>
-            <li>
-              <FaUmbrellaBeach className={styles.icon} /> Leave
-            </li>
-            <li>
-              <FaMoneyCheckAlt className={styles.icon} /> Payroll
-            </li>
-            <li>
-              <FaBuilding className={styles.icon} /> Departments
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
+      <Sidebar />
       <main className={styles.mainContent}>
         <header className={styles.header}>
           <h2>Dashboard</h2>
@@ -110,14 +42,14 @@ const Dashboard = () => {
 
         <section className={styles.grid}>
           {[
-            "Total Employee",
-            "Present Employee",
-            "Absent Employee",
-            "Departments",
+            { label: "Total Employees", value: stats.total },
+            { label: "Active Employees", value: stats.active },
+            { label: "Inactive Employees", value: stats.inactive },
+            { label: "New Joiners", value: stats.newJoiners },
           ].map((item, index) => (
             <div key={index} className={styles.card}>
-              <h3>{item}</h3>
-              <h3>150</h3>
+              <h3>{item.label}</h3>
+              <h3>{item.value}</h3>
             </div>
           ))}
         </section>

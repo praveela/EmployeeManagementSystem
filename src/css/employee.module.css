@@ -55,6 +55,17 @@
   font-size: 1.2rem;
 }
 
+.user {
+  height: 25px;
+  width: inherit;
+}
+
+.profileInfo .status {
+  background-color: #fff;
+  color: green;
+  font-size: 1rem;
+}
+
 .controls {
   display: flex;
   justify-content: center;
@@ -63,7 +74,10 @@
   flex-wrap: wrap;
 }
 
-.exportBtn,
+.controls a {
+  text-decoration: none;
+}
+
 .addBtn {
   padding: 8px 12px;
   border: none;
@@ -73,9 +87,9 @@
   cursor: pointer;
 }
 
-.exportBtn {
+/* .exportBtn {
   background-color: #f0f0f0;
-}
+} */
 
 .addBtn {
   padding: 0.8rem 0.8rem;
@@ -84,6 +98,10 @@
   display: flex;
   align-items: center;
   gap: 7px;
+}
+
+.addBtn:hover {
+  background-color: #4139ded1;
 }
 
 .stats {
@@ -117,6 +135,7 @@
   gap: 15px;
   margin-bottom: 15px;
   justify-content: space-between;
+  align-items: center ;
 }
 
 .filters h3 {
@@ -126,13 +145,14 @@
 .filters input,
 .filters select {
   padding: 0.9rem 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   margin-left: 1.2rem;
 }
 
 .filters select {
+  width: 27%;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%225%22%20viewBox%3D%220%200%2010%205%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200L5%205L10%200H0Z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -170,32 +190,83 @@
   border-radius: 4px;
   font-size: 1rem;
 }
+
+#td a{
+  color: black;
+  text-decoration: none;
+}
+
+#td a:hover {
+  color: #4f46e5;
+}
+
+#td .del {
+  border: none;
+  cursor: pointer;
+}
+
+#td .del:hover {
+  color: #4f46e5;
+}
+
 .icon {
-    margin: 0 0.7rem;
+  margin: 0 0.5rem;
 }
 
 @media (max-width: 768px) {
+  .dashboard {
+    display: block;
+    width: 100%;
+    text-align: center;
+    overflow: scroll;
+  }
   .sidebar {
-    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
   }
 
-  .dashboard {
+  .sidebar ul {
     flex-direction: column;
   }
 
+  .sidebar li {
+    /* font-size: 14px; */
+    padding: 0.6rem 0.8rem;
+  }
+
+  .header {
+    display: block;
+  }
+
+  .header h2 {
+    font-size: 1.5rem;
+  }
+
+  .header .profileInfo {
+    display: none;
+  }
+  
   .wrapper {
-    padding: 10px;
-  }
-
-  .card {
-    font-size: 14px;
-  }
-
-  .searchBar {
     width: 100%;
+    overflow: hidden;
   }
 
-  .tableWrapper {
-    overflow-x: auto;
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .chartSection h3 {
+    font-size: 1.2rem;
+  }
+
+  .table {
+    min-width: 100%;
+    font-size: 1rem;
   }
 }
