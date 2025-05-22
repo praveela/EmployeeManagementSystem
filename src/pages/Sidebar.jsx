@@ -38,7 +38,9 @@ const Sidebar = () => {
             <FaMoneyCheckAlt className={styles.icon} /> Payroll
           </li>
           <li>
-            <FaBuilding className={styles.icon} /> Departments
+            <Link to="/dashboard/department" className={styles.link}>
+              <FaBuilding className={styles.icon} /> Departments
+            </Link>
           </li>
         </ul>
       </nav>
