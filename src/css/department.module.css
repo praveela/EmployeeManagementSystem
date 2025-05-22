@@ -1,0 +1,206 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background-color: rgb(238, 241, 253);
+  overflow: hidden;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.mainContent {
+  flex-grow: 1;
+  padding: 1.5rem 2rem;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h2 {
+  font-size: 2rem;
+}
+
+.header .searchBar {
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+  width: 350px;
+  font-size: 1.2rem;
+}
+
+.addBtn {
+  background-color: #4139de;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tableActions {
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  margin-bottom: 1rem;
+}
+
+.tab {
+  font-size: 1.2rem;
+  width: 100%;
+  /* border-bottom: 0.1rem solid #ccc; */
+  margin-bottom: 1rem;
+  background-color: #eef1f2;
+  border-radius: 10px;
+  margin-top: 3.5rem;
+}
+
+.tab th,
+.tab td {
+  border-bottom: 0.1rem solid #ccc;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* .tab th {
+  background-color: #c9d2e7;
+}
+.tab tr:nth-child(even) {
+  background-color: #c9d2e7;
+} */
+
+.editBtn {
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #058920;
+  background-color: transparent;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  color: blue;
+}
+
+.deleteBtn {
+  border: none;
+  /* padding: 4px 8px; */
+  border-radius: 4px;
+  cursor: pointer;
+  color: #df1343;
+  background-color: transparent;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal h3 {
+  font-size: 1.5rem;
+}
+
+.input {
+  padding: 0.5rem;
+  margin-bottom: 1.3rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 5px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.saveBtn {
+  font-size: 1.2rem;
+  background-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+    background-color: rgba(0, 128, 0, 0.89);
+}
+
+.cancelBtn {
+  font-size: 1.2rem;
+  background-color: gray;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+    background-color: rgba(128, 128, 128, 0.903);
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+
+  .addBtn {
+    width: 50%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    display: block;
+    width: 100%;
+    text-align: center;
+    overflow: scroll;
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  .addBtn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .saveBtn,
+  .cancelBtn {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

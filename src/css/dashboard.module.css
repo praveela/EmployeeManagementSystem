@@ -166,12 +166,13 @@
 }
 
 .chartSection h3 {
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
   font-size: 1.4rem;
   color: #0f2e6e;
 }
 
 .chartSection .tableWrapper {
+  margin: 0;
   width: 100%;
   overflow-x: auto;
 }
@@ -179,7 +180,7 @@
 .table {
   width: 100%;
   font-size: 1.2rem;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
   background: white;
   border-radius: 10px;
   overflow: scroll;

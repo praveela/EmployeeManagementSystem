@@ -11,6 +11,7 @@ import Employee from "./pages/Employee";
 import Empregister from "./pages/Empregister";
 import { EmployeeProvider } from "./context/EmployeeContext";
 import EmployeeEdit from "./pages/EmployeeEdit";
+import Department from "./pages/Department";
 
 const App = () => {
   return (
@@ -24,11 +25,9 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forgot" element={<Forgotpwd />} />
           <Route path="/dashboard/employee" element={<Employee />} />
-          <Route
-            path="/dashboard/employee/register"
-            element={<Empregister />}
-          />
+          <Route path="/dashboard/employee/register" element={<Empregister />} />
           <Route path="/dashboard/employee/edit/:id" element={<EmployeeEdit />} />
+          <Route path="/dashboard/department" element={<Department />} />
         </Routes>
       </BrowserRouter>
     </EmployeeProvider>
