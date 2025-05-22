@@ -1,0 +1,214 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #aebff4;
+  overflow: hidden;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  background: #eef1fd;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.header h2 {
+  font-size: 2rem;
+}
+
+.profileInfo {
+  background-color: #eef1f9;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.user {
+  height: 25px;
+  width: inherit;
+}
+
+.status {
+  color: green;
+  font-size: 1rem;
+}
+
+.form {
+  padding: 1% 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 95%;
+  box-sizing: border-box;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputGroup label {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inputGroup input,
+.inputGroup select {
+  width: 100%;
+  height: 5.6vh;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+}
+
+/* Style select dropdown arrow */
+.inputGroup select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%225%22%20viewBox%3D%220%200%2010%205%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200L5%205L10%200H0Z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8rem;
+  transition: border 0.3s ease;
+  background-color: white;
+}
+
+.buttonGroup {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.submitBtn {
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  font-size: 1.2rem;
+  background-color: #f44336;
+  color: white;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
+
+/* Tablets (landscape, ≥768px and <1024px) */
+@media screen and (max-width: 1024px) {
+  .dashboard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .wrapper {
+    padding: 1rem;
+  }
+
+  .header h2 {
+    font-size: 1.6rem;
+  }
+
+  .inputGroup label {
+    font-size: 1.2rem;
+  }
+
+  .inputGroup input,
+  .inputGroup select {
+    font-size: 1rem;
+  }
+
+  .submitBtn,
+  .cancelBtn {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .profileInfo {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+/* Mobile Devices (portrait, <768px) */
+@media screen and (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header h2 {
+    font-size: 1.4rem;
+  }
+
+  .form {
+    max-width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .inputGroup label {
+    font-size: 1rem;
+  }
+
+  .inputGroup input,
+  .inputGroup select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+    height: auto;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .submitBtn,
+  .cancelBtn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+
+  .profileInfo {
+    font-size: 12px;
+    padding: 6px 12px;
+    flex-wrap: wrap;
+  }
+}
+
