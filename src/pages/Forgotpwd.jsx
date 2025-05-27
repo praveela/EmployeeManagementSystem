@@ -2,30 +2,48 @@ import React, { useState } from "react";
 import styles from "../css/forgot.module.css";
 import image from "../assets/forgotpwd.png";
 import lock from "../assets/lockicon.png";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Forgotpwd = () => {
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-    const [pass, setPass] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const role = location.state?.role || "employee"; // default to employee
 
-    const validateEmail = (mail) => {
-        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        setPass(mail);
-        return pattern.test(mail);
-    };
+  const validateEmail = (mail) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if(!email) {
-            setError("Email is Required");
-            setPass("");
-        } else if(!validateEmail(email)) {
-            setError('Please enter a valid Email address');
-            setPass("");
-        } else {
-            setError("");
-        }
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      toast.error("Email is required");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error("Invalid email format");
+      return;
+    }
+
+    let found = false;
+
+    if (role === "employee") {
+      const employees = JSON.parse(localStorage.getItem("employees")) || [];
+      found = employees.some((emp) => emp.email.toLowerCase() === email.toLowerCase());
+    } else if (role === "admin") {
+      found = email.toLowerCase() === "admin@gmail.com"; // only one hardcoded admin
+    }
+
+    if (found) {
+      toast.success("Email verified. Redirecting to reset page...");
+      setTimeout(() => {
+        navigate("/reset-password", { state: { email, role } });
+      }, 1500); // Delay to allow user to see the toast
+    } else {
+      toast.error("Email not found!");
+    }
+  };
 
   return (
     <div id={styles.main}>
@@ -34,21 +52,18 @@ const Forgotpwd = () => {
           <img src={lock} alt="Password" />
           <h2>Reset Password</h2>
           <p>Enter your email address to reset your password</p>
-          {pass && <p>Password reset link sent to {pass}</p>}
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="user">Email ID</label>
-            <input type="email" id="user" 
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            <label>Email ID</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            {error && <span className={styles.error}>{error}</span>}
           </div>
-          <button id={styles.registerbtn} type="submit">
-            Reset Password
-          </button>
+          <button id={styles.registerbtn} type="submit">Next</button>
         </form>
       </div>
       <div className={styles.right}>

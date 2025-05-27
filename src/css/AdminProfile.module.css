@@ -1,0 +1,156 @@
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #eef2f7;
+  overflow-x: hidden;
+}
+
+.profileContainer {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  align-self: flex-start;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.profileCard {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageSection {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profileImage {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #555;
+}
+
+.imageEditContainer {
+  margin-top: 1rem;
+}
+
+.editImageLabel {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.editImageLabel:hover {
+  background-color: #0056b3;
+}
+
+.fileInput {
+  display: none; /* Hide the actual file input */
+}
+
+
+.infoSection {
+  width: 100%;
+}
+
+.profileItem {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 1rem;
+  font-size: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.icon {
+  color: #007bff;
+  font-size: 1.4rem;
+}
+
+.label {
+  font-size: 1.6rem;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.input {
+  flex: 1;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.3rem;
+}
+
+.value {
+  flex: 1;
+  font-size: 1.5rem;
+  color: #444;
+}
+
+.buttonContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.editBtn,
+.saveBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editBtn:hover,
+.saveBtn:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 1024px) {
+  .dashboard {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileCard {
+    padding: 1rem;
+  }
+
+  .label {
+    min-width: 100px;
+  }
+
+  .profileItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input,
+  .value {
+    width: 100%;
+  }
+}

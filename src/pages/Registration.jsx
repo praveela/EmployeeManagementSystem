@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
 import styles from "../css/registration.module.css";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Registration = () => {
     pwd: "",
     cpwd: "",
   });
+
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -19,25 +21,37 @@ const Registration = () => {
     const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
 
-    if (!formData.fname.trim()) tempErrors.fname = "First Name is Required!";
-    if (!formData.lname.trim()) tempErrors.lname = "Last Name is Required!";
+    if (!formData.fname.trim()) {
+      tempErrors.fname = "First Name is Required!";
+      toast.error(tempErrors.fname);
+    }
+    if (!formData.lname.trim()) {
+      tempErrors.lname = "Last Name is Required!";
+      toast.error(tempErrors.lname);
+    }
 
     if (!formData.mail.trim()) {
       tempErrors.mail = "Email is Required!";
+      toast.error(tempErrors.mail);
     } else if (!mailRegex.test(formData.mail)) {
       tempErrors.mail = "Invalid Email Format";
+      toast.error(tempErrors.mail);
     }
 
     if (!formData.pwd) {
       tempErrors.pwd = "Password is Required!";
+      toast.error(tempErrors.pwd);
     } else if (!pwdRegex.test(formData.pwd)) {
-      tempErrors.pwd ="Password must be at least 8 characters long and include a number";
+      tempErrors.pwd = "Password must be in formate";
+      toast.error(tempErrors.pwd);
     }
 
     if (!formData.cpwd) {
       tempErrors.cpwd = "Confirm Your Password";
+      toast.error(tempErrors.cpwd);
     } else if (formData.cpwd !== formData.pwd) {
       tempErrors.cpwd = "Passwords do not match!";
+      toast.error(tempErrors.cpwd);
     }
 
     setErrors(tempErrors);
@@ -54,15 +68,45 @@ const Registration = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      console.log("Register Successfully", formData);
+      const existingEmp = JSON.parse(localStorage.getItem("employees")) || [];
+      const matchedEmpIndx = existingEmp.findIndex((emp) => {
+        const fullName = `${formData.fname} ${formData.lname}`.toLowerCase();
+        return (
+          emp.name.toLowerCase() === fullName &&
+          emp.email.toLowerCase() === formData.mail.toLowerCase()
+        );
+      });
+
+      if (matchedEmpIndx === -1) {
+        toast.error("You are not an authorized employee.");
+        return;
+      }
+
+      const matchedEmp = existingEmp[matchedEmpIndx];
+      if (matchedEmp.password) {
+        toast.error("You are already Registered.");
+        return;
+      }
+
+      const updatedEmp = {
+        ...matchedEmp,
+        password: formData.pwd,
+      };
+
+      existingEmp[matchedEmpIndx] = updatedEmp;
+
+      localStorage.setItem("employees", JSON.stringify(existingEmp));
+      toast.success("Registered Successfully!");
       navigate("/");
+    } else {
+      toast.error("Registeration Failed, Please Try again Later");
     }
   };
 
   const backToHome = () => {
     const tempErrors = {};
-    setErrors(tempErrors)
-    navigate('/');
+    setErrors(tempErrors);
+    navigate("/");
   };
 
   return (
@@ -88,9 +132,6 @@ const Registration = () => {
                 value={formData.fname}
                 onChange={handleChange}
               />
-              {errors.fname && (
-                <span className={styles.error}>{errors.fname}</span>
-              )}
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="lname">Last Name</label>
@@ -100,9 +141,6 @@ const Registration = () => {
                 value={formData.lname}
                 onChange={handleChange}
               />
-              {errors.lname && (
-                <span className={styles.error}>{errors.lname}</span>
-              )}
             </div>
           </div>
 
@@ -114,7 +152,6 @@ const Registration = () => {
               value={formData.mail}
               onChange={handleChange}
             />
-            {errors.mail && <span className={styles.error}>{errors.mail}</span>}
           </div>
 
           <div className={styles.gridContainer}>
@@ -126,7 +163,6 @@ const Registration = () => {
                 value={formData.pwd}
                 onChange={handleChange}
               />
-              {errors.pwd && <span className={styles.error}>{errors.pwd}</span>}
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="cpwd">Confirm Password</label>
@@ -136,9 +172,6 @@ const Registration = () => {
                 value={formData.cpwd}
                 onChange={handleChange}
               />
-              {errors.cpwd && (
-                <span className={styles.error}>{errors.cpwd}</span>
-              )}
             </div>
           </div>
 
@@ -146,7 +179,9 @@ const Registration = () => {
             <button id={styles.registerbtn} type="submit">
               Register
             </button>
-            <button id={styles.registerbtn} type="button" onClick={backToHome}>Back To Home</button>
+            <button id={styles.registerbtn} type="button" onClick={backToHome}>
+              Back To Home
+            </button>
           </div>
         </form>
       </div>

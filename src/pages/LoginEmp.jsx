@@ -2,58 +2,38 @@ import React from "react";
 import styles from "../css/login.module.css";
 import style from "../css/registration.module.css";
 import bg from "../assets/official-logins.png";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthEmp } from "../context/AuthEmpContext";
 
 const LoginEmp = () => {
   const navigate = useNavigate();
+  const { login } = useAuthEmp();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
-
-  const validate = () => {
-    let valid = true;
-    const newErrors = {};
-
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
-
-    if (!email.trim()) {
-      newErrors.email = "Email is required";
-      valid = false;
-    } else if (!emailPattern.test(email)) {
-      newErrors.email = "Invalid email format";
-      valid = false;
-    }
-
-    if (!password.trim()) {
-      newErrors.password = "Password is required";
-      valid = false;
-    } else if (password.length < 8 && !pwdRegex.test(password)) {
-      newErrors.password = "Password must be at least 8 characters";
-      valid = false;
-    }
-
-    setErrors(newErrors);
-    return valid;
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      alert("Login successful!", [email, password]);
-      // You can also do API call here
-      navigate("/dashboard");
+    const employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+    const matchEmp = employees.find(
+      (emp) =>
+        emp.email.toLowerCase() === email.trim().toLowerCase() &&
+        emp.password === password.trim()
+    );
+
+    if (matchEmp) {
+      toast.success("Login Successfull!");
+      login(matchEmp);
+      navigate("/employee/profile");
+    } else {
+      toast.error("Login Unsuccessfull!");
     }
-    // else{
-    //   alert("Login unsuccessful");
-    // }
   };
 
   const backToHome = () => {
-    const tempErrors = {};
-    setErrors(tempErrors)
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -72,9 +52,6 @@ const LoginEmp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && (
-              <span className={style.error}>{errors.email}</span>
-            )}
           </div>
           <div className={style.formGroup}>
             <label htmlFor="pwd">Password</label>
@@ -84,12 +61,9 @@ const LoginEmp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && (
-              <span className={style.error}>{errors.password}</span>
-            )}
           </div>
           <div id={styles.forgot}>
-            <Link to='/forgot'>Forgot password ?</Link>
+            <Link to="/forgot" state={{ role: "employee" }}>Forgot password ?</Link>
           </div>
           <div id={styles.buttons}>
             <button id={styles.registerbtn} type="submit">

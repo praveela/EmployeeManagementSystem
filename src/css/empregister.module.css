@@ -29,6 +29,12 @@
   font-size: 2rem;
 }
 
+.header input {
+  font-size: 1.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+}
+
 .profileInfo {
   background-color: #eef1f9;
   padding: 10px 20px;
@@ -124,6 +130,53 @@
   font-size: 0.85rem;
 }
 
+.table {
+  font-size: 1.2rem;
+  /* border-collapse: collapse; */
+  background: white;
+  border-radius: 10px;
+  overflow: scroll;
+  /* min-width: 600px; */
+}
+
+.table th,
+.table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+#buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.table td .submitBtn {
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.table td .cancelBtn {
+  font-size: 1rem;
+  color: white;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f44336;
+}
+
+.table td .submitBtn:hover {
+  background-color: #4caf4fda;
+}
+
+.table td .cancelBtn:hover {
+  background-color: #f44336d5;
+}
+
 /* Tablets (landscape, ≥768px and <1024px) */
 @media screen and (max-width: 1024px) {
   .dashboard {
@@ -211,4 +264,6 @@
     flex-wrap: wrap;
   }
 }
+
+
 

@@ -1,18 +1,28 @@
 // src/components/Sidebar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/dashboard.module.css";
 import {
   FaCalendarCheck,
   FaUmbrellaBeach,
-  FaMoneyCheckAlt,
   FaBuilding,
+  FaSignOutAlt,
   FaUsers,
-  FaUser,
+  FaUserCircle,
 } from "react-icons/fa";
 import { FaHouse } from "react-icons/fa6";
+import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logout Successfully");
+    navigate("/login/admin");
+  };
   return (
     <aside className={styles.sidebar}>
       <h1 className={styles.logo}>EMS</h1>
@@ -29,18 +39,27 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <FaCalendarCheck className={styles.icon} /> Attendance
-          </li>
-          <li>
-            <FaUmbrellaBeach className={styles.icon} /> Leave
-          </li>
-          <li>
-            <FaMoneyCheckAlt className={styles.icon} /> Payroll
+            <Link to="/dashboard/attendance" className={styles.link}>
+              <FaCalendarCheck className={styles.icon} /> Attendance
+            </Link>
           </li>
           <li>
             <Link to="/dashboard/department" className={styles.link}>
               <FaBuilding className={styles.icon} /> Departments
             </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/leave" className={styles.link}>
+              <FaUmbrellaBeach className={styles.icon} /> Leave{" "}
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/adminProfile" className={styles.link}>
+              <FaUserCircle className={styles.icon} /> Profile{" "}
+            </Link>
+          </li>
+          <li onClick={handleLogout}>
+            <FaSignOutAlt className={styles.icon} /> Signout
           </li>
         </ul>
       </nav>
