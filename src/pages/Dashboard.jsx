@@ -77,7 +77,15 @@ const Dashboard = () => {
                     <td>{emp.mobile}</td>
                     <td>{emp.designation}</td>
                     <td>
-                      <span className={styles.status}>{emp.status}</span>
+                      <span
+                        className={`${styles.status} ${
+                          emp.status.toLowerCase() === "active"
+                            ? styles.active
+                            : styles.inactive
+                        }`}
+                      >
+                        {emp.status}
+                      </span>
                     </td>
                   </tr>
                 ))}

@@ -5,7 +5,7 @@ const EmployeeContext = createContext();
 const initialEmployees = [
   {
     id: "EMP12354",
-    name: "Harsha",
+    name: "Harsha", 
     email: "Harsha@example.com",
     mobile: "9856743218",
     designation: "Full Stack Developer",

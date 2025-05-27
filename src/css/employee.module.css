@@ -213,6 +213,16 @@
   margin: 0 0.5rem;
 }
 
+.active {
+  background-color: #22c55e; /* Green */
+  color: white;
+}
+
+.inactive {
+  background-color: #ef4444; /* Red */
+  color: white;
+}
+
 @media (max-width: 768px) {
   .dashboard {
     display: block;

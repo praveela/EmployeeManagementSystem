@@ -15,12 +15,14 @@ import {
 } from "react-icons/fa";
 // import { FaHouse } from "react-icons/fa6";
 import { useEmployees } from "../context/EmployeeContext";
+import { toast } from "react-toastify";
 
 const Employee = () => {
   const { employees, stats, deleteEmployee } = useEmployees();
   const handleDelete = (id) => {
     deleteEmployee(id);
-  }
+    toast.success("Employee Deleted SuccessFully.");
+  };
   return (
     <div className={styles.dashboard}>
       <Sidebar />
@@ -117,12 +119,25 @@ const Employee = () => {
                   <td>{emp.mobile}</td>
                   <td>{emp.designation}</td>
                   <td>
-                    <span className={styles.status}>{emp.status}</span>
+                    <span
+                      className={`${styles.status} ${
+                        emp.status.toLowerCase() === "active"
+                          ? styles.active
+                          : styles.inactive
+                      }`}
+                    >
+                      {emp.status}
+                    </span>
                   </td>
                   <td id={styles.td}>
-                    <Link to={`/dashboard/employee/edit/${emp.id}`}><FaEdit className={styles.icon} size={30}/> </Link>
-                    <button onClick={() => handleDelete(emp.id)} className={styles.del}>
-                      <FaTrash className={styles.icon} size={30}/>
+                    <Link to={`/dashboard/employee/edit/${emp.id}`}>
+                      <FaEdit className={styles.icon} size={30} />{" "}
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(emp.id)}
+                      className={styles.del}
+                    >
+                      <FaTrash className={styles.icon} size={30} />
                     </button>
                   </td>
                 </tr>

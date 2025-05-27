@@ -4,56 +4,61 @@ import style from "../css/registration.module.css";
 import bg from "../assets/login.png";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
 
   const validate = () => {
-    let valid = true;
-    const newErrors = {};
-
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!email.trim()) {
-      newErrors.email = "Email is required";
-      valid = false;
-    } else if (!emailPattern.test(email)) {
-      newErrors.email = "Invalid email format";
-      valid = false;
+      toast.error("Email shouldn't be empty!");
+      return false;
+    }
+    if (!emailPattern.test(email)) {
+      toast.error("Invalid Email Format");
+      return false;
     }
 
     if (!password.trim()) {
-      newErrors.password = "Password is required";
-      valid = false;
-    } else if (password.length < 8 && !pwdRegex.test(password)) {
-      newErrors.password = "Password must be at least 8 characters";
-      valid = false;
+      toast.error("Password is required");
+      return false;
+    }
+    if (password.length < 8 || !pwdRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters and contain letters and numbers"
+      );
+      return false;
     }
 
-    setErrors(newErrors);
-    return valid;
+    return true;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      alert("Login successful!", [email, password]);
-      // You can also do API call here
-      navigate("/dashboard");
+      const success = login(email, password);
+      if (success) {
+        toast.success("Login Successful!");
+        console.log(`${email} - ${password}`);
+        navigate("/dashboard");
+      } else {
+        toast.error("Invalid Gmail or Password!");
+      }
+    } else {
+      toast.error("Invalid Something Wrong!");
     }
-    // else{
-    //   alert("Login unsuccessful");
-    // }
   };
 
   const backToHome = () => {
-    const tempErrors = {};
-    setErrors(tempErrors)
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -72,9 +77,6 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && (
-              <span className={style.error}>{errors.email}</span>
-            )}
           </div>
           <div className={style.formGroup}>
             <label htmlFor="pwd">Password</label>
@@ -84,12 +86,9 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && (
-              <span className={style.error}>{errors.password}</span>
-            )}
           </div>
           <div id={styles.forgot}>
-            <Link to='/forgot'>Forgot password ?</Link>
+            <Link to="/forgot" state={{ role: "admin" }}>Forgot password ?</Link>
           </div>
           <div id={styles.buttons}>
             <button id={styles.registerbtn} type="submit">
